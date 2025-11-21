@@ -50,7 +50,7 @@ int main()
                 int numberOfDucks;
                 long long int actionStore = 0;
                 do {
-                    printf("please enter a number of Ducks: \n");
+                    printf("please enter the number of ducks: \n");
                     scanf(" %d", &numberOfDucks);
                 }
                 while (numberOfDucks <= 0);
@@ -76,10 +76,10 @@ int main()
                 // TASK 3: Professor Pat's Power Calculation
                 int base, exponent; 
                 do {
-                    printf("Please enter the number \n");
+                    printf("please enter the number \n");
                     scanf(" %d", &base);
 
-                    printf("Please enter the exponent \n");
+                    printf("please enter the exponent \n");
                     scanf(" %d", &exponent);
                 }
                 while (base < 0 || exponent < 0);
@@ -181,7 +181,7 @@ int main()
                 // TASK 5: The Mystery of the Repeated Digits
                 int inputNumber;
                 do {
-                    printf("please enter a number\n");
+                    printf("please enter number\n");
                     scanf(" %d", &inputNumber);
                 }
                 while (inputNumber < 0);
@@ -214,7 +214,7 @@ int main()
                     temp = temp % 10;
                     //Now we have the digit, lets see if we found it in the store
                     if ((digitStore >> temp) & 1){
-                        printf("digit %d appears later\n", temp);
+                        printf("%d appears more than once!\n", temp);
                     }
                     //clear store for the next iteration 
                     digitStore = digitStore & 0;
