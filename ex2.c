@@ -222,11 +222,12 @@ int main()
                 break;
             case 6:
                 // TASK 6: EXIT
-                return 0;
+                flag = 0;
+                break;
             default:
                 printf("Invaild option, please try again\n");
         }
     }
-    while (flag != 6);
+    while (flag);
     return 0;
 }
