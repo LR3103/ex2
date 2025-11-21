@@ -81,19 +81,28 @@ int main()
                     printf("Please enter the exponent \n");
                     scanf(" %d", &exponent);
                 }
-                while (base <= 0 || exponent <= 0);
-
-                long long int tempSum = 0;
-                long long int trueSum = base;
-                for (int i = 0; i < exponent - 1; i++){
-                    for(int j = 0; j < base; j++){
-                        tempSum += trueSum;
-                    }
-                    trueSum = tempSum;
-                    tempSum = 0;
+                while (base < 0 || exponent < 0);
+                
+                if (base == 0)
+                    printf("0");
+                
+                else if (base == 1 || exponent == 0){
+                    printf("1");
                 }
 
-                printf("%d", trueSum);
+                else {  
+                    long long int tempSum = 0;
+                    long long int trueSum = base;
+                    for (int i = 0; i < exponent - 1; i++){
+                        for(int j = 0; j < base; j++){
+                            tempSum += trueSum;
+                        }
+                        trueSum = tempSum;
+                        tempSum = 0;
+                    }
+
+                    printf("%d\n", trueSum);
+                } 
                 break;
             case 4:
                 // TASK 4: The Duck Parade
@@ -118,7 +127,7 @@ int main()
                             if (ducksToPrintInRow - 1 == i)
                                 printf("   _");
                             else
-                                printf("   _        ");
+                                printf("   _            ");
                         }
                         printf("\n");
                         for (int i = 0; i < ducksToPrintInRow; i++){
@@ -126,7 +135,7 @@ int main()
                             if (ducksToPrintInRow - 1 == i)
                                 printf("__(o)>");
                             else
-                                printf("__(o)>      ");
+                                printf("__(o)>          ");
                         }
                         printf("\n");
                         for (int i = 0; i < ducksToPrintInRow; i++){
@@ -134,7 +143,7 @@ int main()
                             if (ducksToPrintInRow - 1 == i)
                                 printf("\\___)");
                             else
-                                printf("\\___)       ");
+                                printf("\\___)           ");
                         }
                         printf("\n");
                     }
@@ -144,7 +153,7 @@ int main()
                             if (maxDucksInRow - 1 == i)
                                 printf("   _");
                             else
-                                printf("   _        ");
+                                printf("   _            ");
                         }
                         printf("\n");
                         for (int i = 0; i < maxDucksInRow; i++){
@@ -152,7 +161,7 @@ int main()
                             if (maxDucksInRow - 1 == i)
                                 printf("__(o)>");
                             else
-                                printf("__(o)>      ");
+                                printf("__(o)>          ");
                         }
                         printf("\n");
                         for (int i = 0; i < maxDucksInRow; i++){
@@ -160,7 +169,7 @@ int main()
                             if (maxDucksInRow - 1 == i)
                                 printf("\\___)");
                             else
-                                printf("\\___)       ");
+                                printf("\\___)           ");
                         }
                         printf("\n");
                     }
@@ -169,12 +178,53 @@ int main()
                 break;
             case 5:
                 // TASK 5: The Mystery of the Repeated Digits
+                int inputNumber, numberStore;
+                do {
+                    printf("please enter a number\n");
+                    scanf(" %d", &inputNumber);
+                }
+                while (inputNumber < 0);
+
+                //After the user inserted the number we are going to count how many digits it has.
+                int temp = inputNumber;
+                int digitCount = 0;
+                short int digitStore = 0;
+                do {
+                    temp = temp / 10;
+                    digitCount++;
+                }
+                while (temp > 0);
+
+                for (int i = digitCount - 1; i > 0; i--){
+                    temp = inputNumber;
+                    int tempCounter = i;
+                    //iterating on the number to digit x from the left to right in order to see what numbers appears before the desired number.
+                    //writing what digits appeared in digitStore.
+                    do {
+                        int modulo = temp % 10;
+                        //add mdulo to the digit store (we leave the LSB for 0 in the store)
+                        digitStore = digitStore | ((short int)1 << (modulo));
+                        temp = temp / 10;
+                        tempCounter--;
+                    }
+                    while (tempCounter > 0);
+                    
+                    //make sure we have single digit number in a certain position from the right.
+                    temp = temp % 10;
+                    //Now we have the digit, lets see if we found it in the store
+                    if ((digitStore >> temp) & 1){
+                        printf("digit %d appears later\n", temp);
+                    }
+                    //clear store for the next iteration 
+                    digitStore = digitStore & 0;
+                }
+
                 break;
             case 6:
                 // TASK 6: EXIT
-                break;
+                return 0;
             default:
-                printf("Stop Trolling Me. Please Enter a Valid Option.\n");
+                printf("Invaild option, please try again\n");
         }
     }
     while (flag != 6);
