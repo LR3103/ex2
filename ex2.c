@@ -101,7 +101,7 @@ int main()
                         tempSum = 0;
                     }
 
-                    printf("%d\n", trueSum);
+                    printf("%lld\n", trueSum);
                 } 
                 break;
             case 4:
@@ -178,7 +178,7 @@ int main()
                 break;
             case 5:
                 // TASK 5: The Mystery of the Repeated Digits
-                int inputNumber, numberStore;
+                int inputNumber;
                 do {
                     printf("please enter a number\n");
                     scanf(" %d", &inputNumber);
