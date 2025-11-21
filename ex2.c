@@ -9,7 +9,7 @@ Assignment: 2
 int main()
 {
     // MAIN MENU LOOP
-    int flag = 1, task;
+    int flag = 1, task, firstAttempt = 1;
     do {
         printf("Welcome to our games, please choose an option:\n");
         printf("1. Ducky's Unity Game\n");
@@ -49,8 +49,15 @@ int main()
                 //Get number of ducks
                 int numberOfDucks;
                 long long int actionStore = 0;
+                firstAttempt = 1;
                 do {
-                    printf("please enter the number of ducks: \n");
+                    if (firstAttempt){
+                        printf("please enter the number of ducks: \n");
+                        firstAttempt = 0;
+                    }
+                    else{
+                        printf("Invalid number, please try again\n");
+                    }
                     scanf(" %d", &numberOfDucks);
                 }
                 while (numberOfDucks <= 0);
@@ -78,35 +85,50 @@ int main()
                 do {
                     printf("please enter the number \n");
                     scanf(" %d", &base);
-
+                }
+                while (base < 0);
+                do {
                     printf("please enter the exponent \n");
                     scanf(" %d", &exponent);
-                }
-                while (base < 0 || exponent < 0 || (base == 0 && exponent == 0));
-                
-                if (base == 0)
-                    printf("your power is: 0\n");
-                
-                else if (base == 1 || exponent == 0){
-                    printf("your power is: 1\n");
-                }
+                } while (exponent < 0);
 
+                if (exponent == 0)
+                    printf("your power is: 1\n");
+
+                else if (base == 0)
+                    printf("your power is: 0\n");
+                    
                 else {  
-                    long long int result = 1; // Start with 1, not base
-                    for (int i = 0; i < exponent; i++){
-                        result *= base; // Direct multiplication
+                    long long int tempSum = 0;
+                    long long int trueSum = base;
+                    for (int i = 0; i < exponent - 1; i++){
+                        for(int j = 0; j < base; j++){
+                            tempSum += trueSum;
+                        }
+                        trueSum = tempSum;
+                        tempSum = 0;
                     }
-                    printf("your power is: %lld\n", result);
+
+                    printf("your power is: %lld\n", trueSum);
                 } 
                 break;
             case 4:
                 // TASK 4: The Duck Parade
                 int numberOfDucksToPrint, ducksRows, maxDucksInRow = 10;
+                firstAttempt = 1;
                 do{
-                    printf("please enter number of ducks:\n");
+                    if (firstAttempt){
+                        printf("please enter number of ducks:\n");
+                        firstAttempt = 0;
+                    }
+                    else{
+                        printf("Invalid number, please try again\n");
+                    }
                     scanf(" %d", &numberOfDucksToPrint);
                 }
-                while (numberOfDucksToPrint <= 0);
+                while (numberOfDucksToPrint < 0);
+                if (numberOfDucksToPrint == 0)
+                    break;
                 int quotient = numberOfDucksToPrint / maxDucksInRow;
                 ducksRows = quotient + 1; // get the number of rows
                 for (int i = 0; i < ducksRows; i++){
@@ -174,11 +196,18 @@ int main()
             case 5:
                 // TASK 5: The Mystery of the Repeated Digits
                 int inputNumber;
+                firstAttempt = 1;
                 do {
-                    printf("please enter number\n");
+                    if (firstAttempt){
+                        printf("please enter number\n");
+                        firstAttempt = 0;
+                    }
+                    else{
+                        printf("Invalid number, please try again\n");
+                    }
                     scanf(" %d", &inputNumber);
                 }
-                while (inputNumber < 0);
+                while (inputNumber <= 0);
 
                 //After the user inserted the number we are going to count how many digits it has.
                 int temp = inputNumber;
@@ -217,10 +246,10 @@ int main()
                 break;
             case 6:
                 // TASK 6: EXIT
-                flag = 1; // shoud be zero, but when subbmiting it times out so i test if leaving this as one works.
+                flag = 0; // shoud be zero, but when subbmiting it times out so i test if leaving this as one works.
                 break;
             default:
-                printf("Invaild option, please try again\n");
+                printf("Invalid option, please try again\n");
         }
     }
     while (flag);
