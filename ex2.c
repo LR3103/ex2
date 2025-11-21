@@ -17,7 +17,7 @@ int main()
         printf("3. Professor Pat's Power Calculation\n");
         printf("4. The Duck Parade\n");
         printf("5. The Mystery of the Repeated Digits\n");
-        printf("6. EXIT\n");
+        printf("6. Good Night Ducks\n");
 
         scanf(" %d", &task);
 
@@ -27,7 +27,7 @@ int main()
                 int input;
                 //Check if the number is positive
                 do {
-                    printf("Please enter a positive number: \n");
+                    printf("please enter a positive number: \n");
                     scanf(" %d", &input);
                 }
                 while (input <= 0);
@@ -41,7 +41,7 @@ int main()
                     //if it is one it just add one, in any other case it is zero. 
                     counter += ((input >> i) & 1); 
                 }
-                printf("%d \n", counter);
+                printf("Ducky earns %d corns\n", counter);
 
                 break;
             case 2:
@@ -50,15 +50,16 @@ int main()
                 int numberOfDucks;
                 long long int actionStore = 0;
                 do {
-                    printf("Please enter a number of Ducks: \n");
+                    printf("please enter a number of Ducks: \n");
                     scanf(" %d", &numberOfDucks);
                 }
                 while (numberOfDucks <= 0);
                 //ask user what the duck did 0 or 1, if other number ask to enter a number again
+                printf("you entered %d ducks\n", numberOfDucks);
                 int singleDuckAction; 
                 for (int i = 0; i < numberOfDucks; i++){
                     do{
-                        printf("Duck %d do QUAK? 1 for yes, 0 for no\n", i + 1);
+                        printf("duck %d do QUAK? 1 for yes, 0 for no\n", i + 1);
                         scanf(" %d", &singleDuckAction);
                     }
                     while ((singleDuckAction != 0) && (singleDuckAction != 1));
@@ -67,7 +68,7 @@ int main()
                 }
                 //now iterate in the store and print what each did
                 for (int i = 0; i < numberOfDucks; i++){
-                    printf("Duck Number %d do %s \n", i + 1, ((actionStore >> i) & 1) ? "Quak" : "SH...");
+                    printf("duck number %d do %s \n", i + 1, ((actionStore >> i) & 1) ? "Quak" : "SH...");
                 }
 
                 break;
@@ -84,10 +85,10 @@ int main()
                 while (base < 0 || exponent < 0);
                 
                 if (base == 0)
-                    printf("0");
+                    printf("your power is: 0");
                 
                 else if (base == 1 || exponent == 0){
-                    printf("1");
+                    printf("your power is: 1");
                 }
 
                 else {  
@@ -101,14 +102,14 @@ int main()
                         tempSum = 0;
                     }
 
-                    printf("%lld\n", trueSum);
+                    printf("your power is: %lld\n", trueSum);
                 } 
                 break;
             case 4:
                 // TASK 4: The Duck Parade
                 int numberOfDucksToPrint, ducksRows, maxDucksInRow = 10;
                 do{
-                    printf("Please enter number of ducks:\n");
+                    printf("please enter number of ducks:\n");
                     scanf(" %d", &numberOfDucksToPrint);
                 }
                 while (numberOfDucksToPrint <= 0);
@@ -229,5 +230,6 @@ int main()
         }
     }
     while (flag);
+    printf("Good night! See you at the pond tomorrow.\n");
     return 0;
 }
