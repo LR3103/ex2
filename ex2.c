@@ -92,17 +92,11 @@ int main()
                 }
 
                 else {  
-                    long long int tempSum = 0;
-                    long long int trueSum = base;
-                    for (int i = 0; i < exponent - 1; i++){
-                        for(int j = 0; j < base; j++){
-                            tempSum += trueSum;
-                        }
-                        trueSum = tempSum;
-                        tempSum = 0;
+                    long long int result = 1; // Start with 1, not base
+                    for (int i = 0; i < exponent; i++){
+                        result *= base; // Direct multiplication
                     }
-
-                    printf("your power is: %lld\n", trueSum);
+                    printf("your power is: %lld\n", result);
                 } 
                 break;
             case 4:
